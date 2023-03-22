@@ -1,0 +1,13 @@
+.image-display img {
+    width: 65%;
+    height: auto;
+    object-fit: contain;
+  }
+  
+  @media (min-width: 768px) {
+    .image-display img {
+      height: auto;
+      width: 45%;
+    }
+  }
+  
