@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import FileUploader from "./components/FileUploader/FileUploader";
 import ImageDisplay from "./components/ImageDisplay/ImageDisplay";
 import ClassificationResults from "./components/ClassificationResults/ClassificationResults";
-import imgrecogserver from "./components/img-recog-server/img-recog-server";
+//import ImgRecogServer from "./components/ImgRecogServer/ImgRecogServer";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
+
 import "./App.css";
 
 function App() {
@@ -21,13 +22,36 @@ function App() {
 
   const handleSubmit = () => {
     // Call your API for classification and update the classificationResults state here
-    // fetch("http://localhost:5000/predict")
-    //   .then((response) => {
-    //     return response.json();
-    //   })
-    //   .then((users) => {
-    //     console.log(users);
-    //   });
+    const formData = new FormData();
+    formData.append('image',imageSrc);
+
+    // const { spawn } = require('child_process');
+
+    // const child = spawn('./index.js');
+
+    console.log("pre fork")
+    const fork = require("child_process").fork;
+    console.log("post fork")
+
+    var child = fork('./index.js');
+    console.log("post child")
+
+    fetch("http://localhost:5000/predict", {
+      method: 'POST',
+      body: formData
+    })
+      .then((response) => {
+        var jsonResponse = response.json();
+
+
+        for (const obj in jsonResponse){
+            for(const key in obj){
+              classificationResults.append(obj[key]);
+            }
+        }
+      });
+
+      child.kill();
   };
 
   return (
