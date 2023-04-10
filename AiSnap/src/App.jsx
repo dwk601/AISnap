@@ -29,12 +29,8 @@ function App() {
 
     // const child = spawn('./index.js');
 
-    console.log("pre fork")
-    const fork = require("child_process").fork;
-    console.log("post fork")
-
-    var child = fork('./index.js');
-    console.log("post child")
+    // const fork = require("child_process").fork;
+    // var child = fork('./index.js');
 
     fetch("http://localhost:5000/predict", {
       method: 'POST',
