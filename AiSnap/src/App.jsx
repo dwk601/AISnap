@@ -32,7 +32,7 @@ function App() {
     // const fork = require("child_process").fork;
     // var child = fork('./index.js');
 
-    fetch("http://localhost:5000/predict", {
+    fetch("http://localhost:5001/predict", {
       method: 'POST',
       body: formData
     })
@@ -40,14 +40,14 @@ function App() {
         var jsonResponse = response.json();
 
 
-        for (const obj in jsonResponse){
-            for(const key in obj){
-              classificationResults.append(obj[key]);
-            }
-        }
+        // for (const obj in jsonResponse){
+        //     for(const key in obj){
+        //       classificationResults.append(obj[key]);
+        //     }
+        // }
+        
       });
 
-      child.kill();
   };
 
   return (

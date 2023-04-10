@@ -6,9 +6,8 @@ import coco_ssd from "@tensorflow-models/coco-ssd";
 import express from "express";
 import busboy from "busboy";
 import { config } from "dotenv";
-
 config();
-tf.expandDims(0);
+tf.expandDims(0)
 
 // * Init Model
 let model = undefined;
@@ -20,7 +19,7 @@ let model = undefined;
 
 // * Init Express
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 app.use(express.json());
 
 app.post("/predict", (req, res) => {
