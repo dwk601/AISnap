@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
-import FileUploader from './components/FileUploader/FileUploader';
-import ImageDisplay from './components/ImageDisplay/ImageDisplay';
-import ClassificationResults from './components/ClassificationResults/ClassificationResults';
-import Button from '@mui/material/Button';
-import Box from '@mui/material/Box';
-import './App.css';
+import React, { useState } from "react";
+import FileUploader from "./components/FileUploader/FileUploader";
+import ImageDisplay from "./components/ImageDisplay/ImageDisplay";
+import ClassificationResults from "./components/ClassificationResults/ClassificationResults";
+import imgrecogserver from "./components/img-recog-server/img-recog-server";
+import Button from "@mui/material/Button";
+import Box from "@mui/material/Box";
+import "./App.css";
 
 function App() {
   const [imageSrc, setImageSrc] = useState(null);
@@ -20,6 +21,13 @@ function App() {
 
   const handleSubmit = () => {
     // Call your API for classification and update the classificationResults state here
+    // fetch("http://localhost:5000/predict")
+    //   .then((response) => {
+    //     return response.json();
+    //   })
+    //   .then((users) => {
+    //     console.log(users);
+    //   });
   };
 
   return (
