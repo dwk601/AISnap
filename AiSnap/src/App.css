@@ -26,6 +26,14 @@
   top: 8px;
 }
 
+.container {
+  margin-top: -100px; /* adjust this value to move the container up */
+}
+
+.submit-button {
+  background-color: red;
+}
+
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);
