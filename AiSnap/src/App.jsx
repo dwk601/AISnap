@@ -23,21 +23,18 @@ function App() {
   const handleSubmit = () => {
     // Call your API for classification and update the classificationResults state here
     const formData = new FormData();
-    formData.append('image',imageSrc);
-
-    // const { spawn } = require('child_process');
-
-    // const child = spawn('./index.js');
-
-    // const fork = require("child_process").fork;
-    // var child = fork('./index.js');
+    formData.append('file',imageSrc);
+    console.log("hi")
+    console.log(imageSrc)
 
     fetch("http://localhost:5001/predict", {
       method: 'POST',
       body: formData
     })
       .then((response) => {
+        console.log("We are in the JSON response")
         var jsonResponse = response.json();
+        console.log(jsonResponse);
 
 
         // for (const obj in jsonResponse){
