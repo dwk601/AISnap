@@ -1,13 +1,32 @@
 .image-display img {
-    width: 65%;
+  width: 65%;
+  height: auto;
+  object-fit: contain;
+}
+
+.image-display img:hover.shake {
+  animation-name: shake;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes shake {
+  0% { transform: translate(0, 0); }
+  10% { transform: translate(-1px, 0); }
+  20% { transform: translate(1px, 0); }
+  30% { transform: translate(-1px, 0); }
+  40% { transform: translate(1px, 0); }
+  50% { transform: translate(-1px, 0); }
+  60% { transform: translate(1px, 0); }
+  70% { transform: translate(-1px, 0); }
+  80% { transform: translate(1px, 0); }
+  90% { transform: translate(-1px, 0); }
+  100% { transform: translate(1px, 0); }
+}
+
+@media (min-width: 768px) {
+  .image-display img {
     height: auto;
-    object-fit: contain;
+    width: 45%;
   }
-  
-  @media (min-width: 768px) {
-    .image-display img {
-      height: auto;
-      width: 45%;
-    }
-  }
-  
+}

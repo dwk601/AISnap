@@ -4,10 +4,12 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
 const ImageDisplay = ({ imageSrc }) => {
+  const imageClass = imageSrc ? 'shake' : ''; // Add 'shake' class if imageSrc exists
+
   return (
     <Box className="image-display">
       {imageSrc ? (
-        <img src={imageSrc} alt="Uploaded" />
+        <img src={imageSrc} alt="Uploaded" className={imageClass} />
       ) : (
         <Typography variant="body1">No image uploaded</Typography>
       )}
@@ -16,4 +18,3 @@ const ImageDisplay = ({ imageSrc }) => {
 };
 
 export default ImageDisplay;
-
