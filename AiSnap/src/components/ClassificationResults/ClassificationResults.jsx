@@ -7,8 +7,8 @@ const ClassificationResults = ({ results }) => {
       {results ? (
         results.map((result, index) => (
           <div key={index}>
-            <span>{result.label}: </span>
-            <span>{(result.probability * 100).toFixed(2)}%</span>
+            <span>{result.class}: </span>
+            <span>{(result.score * 100).toFixed(2)}%</span>
           </div>
         ))
       ) : (

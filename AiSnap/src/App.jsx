@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import FileUploader from "./components/FileUploader/FileUploader";
 import ImageDisplay from "./components/ImageDisplay/ImageDisplay";
 import ClassificationResults from "./components/ClassificationResults/ClassificationResults";
-//import ImgRecogServer from "./components/ImgRecogServer/ImgRecogServer";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
+import axios from "axios";
 
 import "./App.css";
 
@@ -22,29 +22,33 @@ function App() {
 
   const handleSubmit = () => {
     // Call your API for classification and update the classificationResults state here
-    const formData = new FormData();
-    formData.append('file',imageSrc);
-    console.log("hi")
-    console.log(imageSrc)
 
-    fetch("http://localhost:5001/predict", {
-      method: 'POST',
-      body: formData
-    })
-      .then((response) => {
-        console.log("We are in the JSON response")
-        var jsonResponse = response.json();
-        console.log(jsonResponse);
+    const dataURLtoFile = (dataurl, filename) => {
+      const arr = dataurl.split(",");
+      const mime = arr[0].match(/:(.*?);/)[1];
+      const bstr = atob(arr[1]);
+      let n = bstr.length;
+      const u8arr = new Uint8Array(n);
+      while (n) {
+        u8arr[n - 1] = bstr.charCodeAt(n - 1);
+        n -= 1; // to make eslint happy
+      }
+      return new File([u8arr], filename, { type: mime });
+    };
 
+    var formData = new FormData();
+    var blob = dataURLtoFile(imageSrc);
+    formData.append("image", blob);
 
-        // for (const obj in jsonResponse){
-        //     for(const key in obj){
-        //       classificationResults.append(obj[key]);
-        //     }
-        // }
-        
-      });
-
+    axios({
+      method: "POST",
+      url: "http://localhost:5001/predict",
+      data: formData,
+      headers: { "Content-Type": "multipart/form-data" },
+    }).then(function (response) {
+      var responseData = response.data; //This should be the array where objects are.
+      setClassificationResults(responseData);
+    });
   };
 
   return (
