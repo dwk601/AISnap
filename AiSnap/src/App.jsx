@@ -6,6 +6,7 @@ import ClassificationResults from './components/ClassificationResults/Classifica
 import BackgroundAnimation from './components/BackgroundAnimation';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
+import axios from 'axios';
 import './App.css';
 
 function App() {
